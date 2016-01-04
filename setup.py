@@ -6,7 +6,7 @@ if sys.version_info < (2, 7):
     extra['install_requires'] = ['ordereddict']
 
 setup(
-    name='uasparser2',
+    name='udger',
     version='1.0.0',
     author='The Udger Team',
     license='BSD',
@@ -14,7 +14,7 @@ setup(
     description="Fast and reliable User Agent parser for Python.",
     long_description=__doc__,
     url='https://github.com/udger/udger-python',
-    packages=['uasparser2'],
+    packages=['udger'],
     platforms='any',
     zip_safe=True,
     **extra

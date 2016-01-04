@@ -5,7 +5,6 @@ Author: The Udger.com Team (info@udger.com)
 
 - Tested with more the 50.000 unique user agents.
 - Up to date data provided by https://udger.com/
-- Built-in cache.
 - Support for python 3
 
 
@@ -28,13 +27,13 @@ Usage:
     $ mkdir /tmp/udger-cache
     $ python
     >>> from pprint import pprint
-    >>> from uasparser2 import UASparser
-    >>> uas_parser = UASparser(
+    >>> from udger import Udger
+    >>> udger = Udger(
     ...     access_key='YOUR-ACCESS-KEY',
     ...     cache_dir='/tmp/udger-cache',
     ...     cache_ttl=3600*24*7,
     ... )
-    >>> result = uas_parser.parse(
+    >>> result = udger.parse(
     ...     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'
     ... )
     >>> pprint(result)
@@ -47,7 +46,7 @@ Usage:
      'os_icon': u'macosx.png',
      'os_name': u'OS X 10.11 El Capitan',
      'os_url': u'https://en.wikipedia.org/wiki/OS_X_El_Capitan',
-     'typ': u'Browser',
+     'type': u'Browser',
      'ua_company': u'Apple Inc.',
      'ua_company_url': u'http://www.apple.com/',
      'ua_family': u'Safari',

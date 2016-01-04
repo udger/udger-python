@@ -12,20 +12,19 @@ try:
 except ImportError:
     from urllib.request import urlopen
 
-from .decorators import deprecated
 from .ini_data_loader import IniDataLoader
-from .matcher import UASMatcher
+from .matcher import UdgerMatcher
 from .constants import INI_URL, INI_FILE, DEFAULT_TMP_DIR, VERSION
 
 
-_CACHE_FILE_NAME = 'uasparser2_{lib_version}_{python_version}_cache.pickle'
+_CACHE_FILE_NAME = 'udger_{lib_version}_{python_version}_cache.pickle'
 
 
-class UASException(Exception):
+class UdgerException(Exception):
     pass
 
 
-class UASParser(object):
+class Udger(object):
 
     def __init__(self, access_key, cache_dir=None, cache_ttl=None):
         """
@@ -39,7 +38,7 @@ class UASParser(object):
         self._cache_ttl = cache_ttl
 
         self._ini_data_loader = IniDataLoader()
-        self._uas_matcher = None
+        self.matcher = None
 
         self._ini_url = INI_URL + access_key + INI_FILE
 
@@ -49,7 +48,7 @@ class UASParser(object):
         cache_dir = cache_dir or DEFAULT_TMP_DIR
 
         if not os.access(cache_dir, os.W_OK):
-            raise UASException("Cache directory %s is not writable." % cache_dir)
+            raise UdgerException("Cache directory %s is not writable." % cache_dir)
 
         return os.path.join(
             cache_dir,
@@ -66,9 +65,9 @@ class UASParser(object):
             useragent: String, an useragent string
         """
         if not useragent:
-            raise UASException("Excepted argument useragent is not given.")
+            raise UdgerException("Excepted argument useragent is not given.")
 
-        result = self._uas_matcher.match(useragent)
+        result = self.matcher.match(useragent)
 
         return result
 
@@ -94,7 +93,7 @@ class UASParser(object):
             self.update_data()
             return
 
-        self._uas_matcher = UASMatcher(cache_data['data'])
+        self.matcher = UdgerMatcher(cache_data['data'])
 
     def update_data(self):
         """
@@ -105,9 +104,9 @@ class UASParser(object):
             ini_file = self._fetch_url(self._ini_url)
             ini_data = self._ini_data_loader.parse_ini_file(ini_file)
         except:
-            raise UASException("Failed to download cache data")
+            raise UdgerException("Failed to download cache data")
 
-        self._uas_matcher = UASMatcher(ini_data)
+        self.matcher = UdgerMatcher(ini_data)
 
         cache_data = {
             'data': ini_data,
@@ -122,18 +121,3 @@ class UASParser(object):
             self._load_cache()
         else:
             self.update_data()
-
-
-class UASparser(UASParser):
-
-    @deprecated
-    def __init__(self, *args, **kwargs):
-        super(UASparser, self).__init__(*args, **kwargs)
-
-    @deprecated
-    def updateData(self):
-        return self.update_data()
-
-    @deprecated
-    def loadData(self):
-        return self._load_data()

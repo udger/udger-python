@@ -5,7 +5,7 @@ try:
 except ImportError:
     from ordereddict import OrderedDict
 
-from .constants import EMPTY_RESULT, INFO_URL
+from .constants import EMPTY_RESULT, PROJECT_HOMEPAGE
 
 
 class IniDataLoader(object):
@@ -51,7 +51,7 @@ class IniDataLoader(object):
         m_data = []
         m_details = {}
 
-        for k, r_obj in reg_list.items():
+        for r_obj in reg_list.values():
             reg = self._to_python_reg(r_obj[0])
             m_id = int(r_obj[1])
 
@@ -68,13 +68,15 @@ class IniDataLoader(object):
             obj = {}
 
             for i, det in enumerate(details):
-                if details_template[i] == 'ua_info_url':
-                    det = INFO_URL + det
+                name = details_template[i]
 
-                if browser_types and details_template[i] == 'typ':
+                if name == 'ua_info_url':
+                    det = PROJECT_HOMEPAGE + det
+
+                if browser_types and name == 'type':
                     det = browser_types[int(det)][0]
 
-                obj[details_template[i]] = det
+                obj[name] = det
 
             m_details[m_id] = obj
 
@@ -85,7 +87,7 @@ class IniDataLoader(object):
 
     def _get_robots_object(self, robots, os_details, browser_template, os_template):
         r_data = {}
-        for r_id, robot in robots.items():
+        for robot in robots.values():
             obj = {}
 
             re = robot[0]
@@ -93,13 +95,13 @@ class IniDataLoader(object):
             details_os = os_details[robot[7]] if robot[7] else []
 
             obj['ua'] = re
-            obj['details'] = {'typ': 'Robot'}
+            obj['details'] = {'type': 'Robot'}
 
             for i, name in enumerate(browser_template):
                 det = details_browser[i] if len(details_browser) > i else EMPTY_RESULT[name]
 
                 if name == 'ua_info_url':
-                    det = INFO_URL + det
+                    det = PROJECT_HOMEPAGE + det
 
                 obj['details'][name] = det
 
@@ -113,7 +115,7 @@ class IniDataLoader(object):
 
     def parse_ini_file(self, file_buffer):
         os_template = ['os_family', 'os_name', 'os_url', 'os_company', 'os_company_url', 'os_icon']
-        browser_template = ['typ', 'ua_family', 'ua_url', 'ua_company', 'ua_company_url', 'ua_icon', 'ua_info_url']
+        browser_template = ['type', 'ua_family', 'ua_url', 'ua_company', 'ua_company_url', 'ua_icon', 'ua_info_url']
         robot_template = ['ua_family', 'ua_name', 'ua_url', 'ua_company', 'ua_company_url', 'ua_icon', 'ua_info_url']
         device_template = ['device_type', 'device_icon', 'device_info_url']
 

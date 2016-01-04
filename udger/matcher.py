@@ -1,7 +1,7 @@
 from .constants import EMPTY_RESULT
 
 
-class UASMatcher(object):
+class UdgerMatcher(object):
 
     def __init__(self, data):
         self._data = data
@@ -50,9 +50,9 @@ class UASMatcher(object):
                 return True
 
         # Try to match using the type
-        if result['typ'] in ("Other", "Library", "Validator", "Useragent Anonymizer"):
+        if result['type'] in ("Other", "Library", "Validator", "Useragent Anonymizer"):
             result.update(self._data['device']['details'][1])
-        elif result['typ'] in ("Mobile Browser", "Wap Browser"):
+        elif result['type'] in ("Mobile Browser", "Wap Browser"):
             result.update(self._data['device']['details'][3])
         else:
             result.update(self._data['device']['details'][2])
