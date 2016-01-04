@@ -12,7 +12,6 @@ try:
 except ImportError:
     from urllib.request import urlopen
 
-from .imcache import SimpleCache
 from .decorators import deprecated
 from .ini_data_loader import IniDataLoader
 from .matcher import UASMatcher
@@ -28,20 +27,16 @@ class UASException(Exception):
 
 class UASParser(object):
 
-    def __init__(self, access_key, cache_dir=None, mem_cache_size=1000, cache_ttl=None):
+    def __init__(self, access_key, cache_dir=None, cache_ttl=None):
         """
         Args:
             cache_dir: String, path to the cache dir for useragent parsing data, default is /tmp.
             cache_ttl: Int, ttl for useragent parsing data cache in seconds, default is never.
                        Cache ttl is only checked on init when data is loaded.
-            mem_cache_size: Int, number of parsed useragents to cache, default is 1000.
         """
 
         self._cache_file_name = self._get_cache_file_name(cache_dir)
         self._cache_ttl = cache_ttl
-
-        self._mem_cache_size = mem_cache_size
-        self._mem_cache = self._mem_cache_size and SimpleCache(cache_size=self._mem_cache_size)
 
         self._ini_data_loader = IniDataLoader()
         self._uas_matcher = None
@@ -73,16 +68,7 @@ class UASParser(object):
         if not useragent:
             raise UASException("Excepted argument useragent is not given.")
 
-        if self._mem_cache:
-            try:
-                return self._mem_cache.get(useragent)
-            except self._mem_cache.CacheMissException:
-                pass
-
         result = self._uas_matcher.match(useragent)
-
-        if self._mem_cache:
-            self._mem_cache.put(useragent, result)
 
         return result
 
@@ -128,9 +114,6 @@ class UASParser(object):
             'timestamp': time.time(),
         }
         pickle.dump(cache_data, cache_file)
-
-        if self._mem_cache:
-            self._mem_cache = SimpleCache(cache_size=self._mem_cache_size)
 
         return True
 
