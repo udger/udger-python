@@ -1,69 +1,60 @@
 Fast and reliable User Agent parser for python
 ==============================================
-Author: Jure Ham (jure.ham@zemanta.com)
+
+Author: The Udger.com Team (info@udger.com)
 
 - Tested with more the 50.000 unique user agents.
-- Up to date data provided by http://user-agent-string.info/
+- Up to date data provided by https://udger.com/
 - Built-in cache.
 - Support for python 3
 
 
 Forked from:
 ---------
-A python version of http://user-agent-string.info/download/UASparser
 
-By Hicro Kee (http://hicrokee.com) email: hicrokee AT gmail DOT com
+Based on the code by Jure Ham (jure.ham@zemanta.com),
+https://github.com/hamaxx/uasparser2
 
-Modified by Michal Molhanec http://molhanec.net
-
-Install:
--------
-	pip install uasparser2
+Previously, a python version of https://github.com/kaittodesk/uasparser2
+by Hicro Kee (http://hicrokee.com) email: hicrokee AT gmail DOT com
+and modified by Michal Molhanec http://molhanec.net
 
 Usage:
 ------
-	from uasparser2 import UASParser
 
-	uas_parser = UASParser(cache_dir='/path/to/your/cache/folder', cache_ttl=3600*24*7, mem_cache_size=1000)
+    $ git clone https://github.com/udger/udger-python
+    $ cd udger.py/
+    # python setup.py install
+    $ mkdir /tmp/udger-cache
+    $ python
+    >>> from pprint import pprint
+    >>> from uasparser2 import UASparser
+    >>> uas_parser = UASparser(
+    ...     access_key='YOUR-ACCESS-KEY',
+    ...     cache_dir='/tmp/udger-cache',
+    ...     cache_ttl=3600*24*7,
+    ...     mem_cache_size=1000,
+    ... )
+    >>> result = uas_parser.parse(
+    ...     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'
+    ... )
+    >>> pprint(result)
+    {'device_icon': u'desktop.png',
+     'device_info_url': u'/list-of-ua/device-detail?device=Personal computer',
+     'device_type': u'Personal computer',
+     'os_company': u'Apple Computer, Inc.',
+     'os_company_url': u'http://www.apple.com/',
+     'os_family': u'OS X',
+     'os_icon': u'macosx.png',
+     'os_name': u'OS X 10.11 El Capitan',
+     'os_url': u'https://en.wikipedia.org/wiki/OS_X_El_Capitan',
+     'typ': u'Browser',
+     'ua_company': u'Apple Inc.',
+     'ua_company_url': u'http://www.apple.com/',
+     'ua_family': u'Safari',
+     'ua_icon': u'safari.png',
+     'ua_info_url': u'https://udger.com/list-of-ua/browser-detail?browser=Safari',
+     'ua_name': u'Safari 9.0.2',
+     'ua_url': u'https://en.wikipedia.org/wiki/Safari_%28web_browser%29'}
 
-	result = uas_parser.parse('YOUR_USERAGENT_STRING')
-
-	# If input data is not avaible in cache folde, UASparser will download and prepare it on init.
-	# Force data update by calling:
-
-	uas_parser.update_data()
-
-Docs:
------
-
-    class UASParser(__builtin__.object)
-     |  Methods defined here:
-     |  
-     |  __init__(self, cache_dir=None, mem_cache_size=1000, cache_ttl=None)
-     |      Args:
-     |          cache_dir: String, path to the cache dir for useragent parsing data, default is /tmp.
-     |          cache_ttl: Int, ttl for useragent parsing data cache in seconds, default is never.
-     |                     Cache ttl is only checked on init when data is loaded.
-     |          mem_cache_size: Int, number of parsed useragents to cache, default is 1000.
-     |  
-     |  parse(self, useragent)
-     |      Get the information of an useragent string
-     |      Args:
-     |          useragent: String, an useragent string
-     |  
-     |  update_data(self)
-     |      Fetch useragent parsing data from http://user-agent-string.info/ and update local cache
-
-Speed comparison:
------------------
-Parsing 100,000 user agents (10,000 unique) from our server logs:
-
-original uasparser: 7264.2 sec
-
-uasparser2 without cache: 171.7 sec
-
-uasparser2 with cache(size 1000): 34.6 sec
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/hamaxx/uasparser2/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
