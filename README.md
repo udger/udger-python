@@ -24,7 +24,6 @@ Usage:
 	$ git clone https://github.com/udger/udger-python
 	$ cd udger-python/
 	# python setup.py install
-	$ mkdir /tmp/udger-cache
 	$ python
 	>>> from pprint import pprint
 	>>> from udger import Udger
