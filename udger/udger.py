@@ -102,7 +102,7 @@ class Udger(object):
         try:
             ini_file = self._fetch_url(self._ini_url)
             ini_data = self._ini_data_loader.parse_ini_file(ini_file)
-        except (socket.timeout, socket.error, socket.gaierror, URLError), e:
+        except (socket.timeout, socket.error, socket.gaierror, URLError) as e:
             raise UdgerException("Failed to download the cache data: %r" % e)
 
         self.matcher = UdgerMatcher(ini_data)
