@@ -1,15 +1,15 @@
-Fast and reliable User Agent parser for python
+Fast and reliable User Agent parser for Python
 ==============================================
 
 Author: The Udger.com Team (info@udger.com)
 
 - Tested with more the 50.000 unique user agents.
 - Up to date data provided by https://udger.com/
-- Support for python 3
+- Support for Python 3
 
 
 Forked from:
----------
+------------
 
 Based on the code by Jure Ham (jure.ham@zemanta.com),
 https://github.com/hamaxx/uasparser2
@@ -18,12 +18,21 @@ Previously, a python version of https://github.com/kaittodesk/uasparser2
 by Hicro Kee (http://hicrokee.com) email: hicrokee AT gmail DOT com
 and modified by Michal Molhanec http://molhanec.net
 
-Usage:
-------
+Install using pip:
+------------------
+
+	$ pip install udger
+
+Install from git repo:
+----------------------
 
 	$ git clone https://github.com/udger/udger-python
 	$ cd udger-python/
 	# python setup.py install
+
+Usage:
+------
+
 	$ python
 	>>> from pprint import pprint
 	>>> from udger import Udger
