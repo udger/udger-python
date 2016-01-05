@@ -21,38 +21,52 @@ and modified by Michal Molhanec http://molhanec.net
 Usage:
 ------
 
-    $ git clone https://github.com/udger/udger-python
-    $ cd udger.py/
-    # python setup.py install
-    $ mkdir /tmp/udger-cache
-    $ python
-    >>> from pprint import pprint
-    >>> from udger import Udger
-    >>> udger = Udger(
-    ...     access_key='YOUR-ACCESS-KEY',
-    ...     cache_dir='/tmp/udger-cache',
-    ...     cache_ttl=3600*24*7,
-    ... )
-    >>> result = udger.parse(
-    ...     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'
-    ... )
-    >>> pprint(result)
-    {'device_icon': u'desktop.png',
-     'device_info_url': u'/list-of-ua/device-detail?device=Personal computer',
-     'device_type': u'Personal computer',
-     'os_company': u'Apple Computer, Inc.',
-     'os_company_url': u'http://www.apple.com/',
-     'os_family': u'OS X',
-     'os_icon': u'macosx.png',
-     'os_name': u'OS X 10.11 El Capitan',
-     'os_url': u'https://en.wikipedia.org/wiki/OS_X_El_Capitan',
-     'type': u'Browser',
-     'ua_company': u'Apple Inc.',
-     'ua_company_url': u'http://www.apple.com/',
-     'ua_family': u'Safari',
-     'ua_icon': u'safari.png',
-     'ua_info_url': u'https://udger.com/list-of-ua/browser-detail?browser=Safari',
-     'ua_name': u'Safari 9.0.2',
-     'ua_url': u'https://en.wikipedia.org/wiki/Safari_%28web_browser%29'}
+	$ git clone https://github.com/udger/udger-python
+	$ cd udger-python/
+	# python setup.py install
+	$ mkdir /tmp/udger-cache
+	$ python
+	>>> from pprint import pprint
+	>>> from udger import Udger
+	>>> udger = Udger(access_key='YOUR-ACCESS-KEY')
+	>>> result = udger.parse(
+	...     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'
+	... )
+	>>> pprint(result)
+	{'device_icon': u'https://udger.com/pub/img/device/desktop.png',
+	 'device_name': u'Personal computer',
+	 'device_udger_url': u'https://udger.com/resources/ua-list/device-detail?device=Personal%20computer',
+	 'os_company': u'Apple Computer, Inc.',
+	 'os_company_url': u'http://www.apple.com/',
+	 'os_family': u'OS X',
+	 'os_icon': u'https://udger.com/pub/img/os/macosx.png',
+	 'os_name': u'OS X 10.11 El Capitan',
+	 'os_url': u'https://en.wikipedia.org/wiki/OS_X_El_Capitan',
+	 'type': u'Browser',
+	 'ua_company': u'Apple Inc.',
+	 'ua_company_url': u'http://www.apple.com/',
+	 'ua_family': u'Safari',
+	 'ua_icon': u'https://udger.com/pub/img/ua/safari.png',
+	 'ua_name': u'Safari 9.0.2',
+	 'ua_udger_url': u'https://udger.com/resources/ua-list/browser-detail?browser=Safari',
+	 'ua_url': u'https://en.wikipedia.org/wiki/Safari_%28web_browser%29'}
 
-
+	>>> result = udger.parse('Some Thing')
+	>>> pprint(result)
+	{'device_icon': u'https://udger.com/pub/img/device/desktop.png',
+	 'device_name': u'Personal computer',
+	 'device_udger_url': u'https://udger.com/resources/ua-list/device-detail?device=Personal%20computer',
+	 'os_company': None,
+	 'os_company_url': None,
+	 'os_family': None,
+	 'os_icon': 'https://udger.com/pub/img/os/unknown.png',
+	 'os_name': None,
+	 'os_url': None,
+	 'type': None,
+	 'ua_company': None,
+	 'ua_company_url': None,
+	 'ua_family': None,
+	 'ua_icon': 'https://udger.com/pub/img/ua/unknown.png',
+	 'ua_name': None,
+	 'ua_udger_url': None,
+	 'ua_url': None}

@@ -9,6 +9,10 @@ from .constants import EMPTY_RESULT, PROJECT_HOMEPAGE
 
 
 class IniDataLoader(object):
+    section_re = re.compile(r'^\[(\S+)\]$')
+    option_re = re.compile(r'^(\d+)\[\]\s=\s"(.*)"$')
+
+    info_patch_re = re.compile(r'^/list-of-ua/(.*)')
 
     def _to_python_reg(self, reg):
         reg_l = reg[1:reg.rfind('/')]
@@ -25,12 +29,10 @@ class IniDataLoader(object):
         data = {}
 
         current_section = ''
-        section_pat = re.compile(r'^\[(\S+)\]$')
-        option_pat = re.compile(r'^(\d+)\[\]\s=\s"(.*)"$')
 
         for line in file_buffer:
             line = line.decode('utf-8', 'ignore')
-            option = option_pat.findall(line)
+            option = self.option_re.findall(line)
             if option:
                 key = int(option[0][0])
                 val = option[0][1]
@@ -40,12 +42,26 @@ class IniDataLoader(object):
                 else:
                     data[current_section][key] = [val]
             else:
-                section = section_pat.findall(line)
+                section = self.section_re.findall(line)
                 if section:
                     current_section = section[0]
                     data[current_section] = OrderedDict()
 
         return data
+
+    def _patch_detail(self, name, det):
+        if det is not None:
+            if name in ('ua_udger_url', 'device_udger_url'):
+                det = self.info_patch_re.sub(PROJECT_HOMEPAGE + r'/resources/ua-list/\1', det)
+                det = det.replace(' ', '%20')
+
+            elif '/' not in det:
+                for k in 'device', 'ua', 'os':
+                    if name == k + '_icon':
+                        det = '/'.join((PROJECT_HOMEPAGE, 'pub', 'img', k, det))
+                        break
+
+        return det
 
     def _get_matching_object(self, reg_list, details, details_template, browser_types=None, browser_os=None):
         m_data = []
@@ -70,11 +86,11 @@ class IniDataLoader(object):
             for i, det in enumerate(details):
                 name = details_template[i]
 
-                if name == 'ua_info_url':
-                    det = PROJECT_HOMEPAGE + det
-
-                if browser_types and name == 'type':
+                if name == 'type' and browser_types:
                     det = browser_types[int(det)][0]
+
+                else:
+                    det = self._patch_detail(name, det)
 
                 obj[name] = det
 
@@ -100,13 +116,15 @@ class IniDataLoader(object):
             for i, name in enumerate(browser_template):
                 det = details_browser[i] if len(details_browser) > i else EMPTY_RESULT[name]
 
-                if name == 'ua_info_url':
-                    det = PROJECT_HOMEPAGE + det
+                det = self._patch_detail(name, det)
 
                 obj['details'][name] = det
 
             for i, name in enumerate(os_template):
                 det = details_os[i] if len(details_os) > i else EMPTY_RESULT[name]
+
+                det = self._patch_detail(name, det)
+
                 obj['details'][name] = det
 
             r_data[re] = obj
@@ -115,9 +133,9 @@ class IniDataLoader(object):
 
     def parse_ini_file(self, file_buffer):
         os_template = ['os_family', 'os_name', 'os_url', 'os_company', 'os_company_url', 'os_icon']
-        browser_template = ['type', 'ua_family', 'ua_url', 'ua_company', 'ua_company_url', 'ua_icon', 'ua_info_url']
-        robot_template = ['ua_family', 'ua_name', 'ua_url', 'ua_company', 'ua_company_url', 'ua_icon', 'ua_info_url']
-        device_template = ['device_type', 'device_icon', 'device_info_url']
+        browser_template = ['type', 'ua_family', 'ua_url', 'ua_company', 'ua_company_url', 'ua_icon', 'ua_udger_url']
+        robot_template = ['ua_family', 'ua_name', 'ua_url', 'ua_company', 'ua_company_url', 'ua_icon', 'ua_udger_url']
+        device_template = ['device_name', 'device_icon', 'device_udger_url']
 
         data = self._read_ini_file(file_buffer)
 

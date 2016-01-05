@@ -1,5 +1,6 @@
 import os
 import platform
+import socket
 import time
 
 try:
@@ -8,16 +9,16 @@ except ImportError:
     import pickle
 
 try:
-    from urllib2 import urlopen
+    from urllib2 import urlopen, URLError
 except ImportError:
-    from urllib.request import urlopen
+    from urllib.request import urlopen, URLError
 
 from .ini_data_loader import IniDataLoader
 from .matcher import UdgerMatcher
-from .constants import INI_URL, INI_FILE, DEFAULT_TMP_DIR, VERSION
+from .constants import INI_FILE_URL_TEMPLATE, DEFAULT_TMP_DIR, VERSION
 
 
-_CACHE_FILE_NAME = 'udger_{lib_version}_{python_version}_cache.pickle'
+_CACHE_FILE_NAME = 'udger_{lib_version}_{python_version}.pickle.cache'
 
 
 class UdgerException(Exception):
@@ -40,7 +41,7 @@ class Udger(object):
         self._ini_data_loader = IniDataLoader()
         self.matcher = None
 
-        self._ini_url = INI_URL + access_key + INI_FILE
+        self._ini_url = INI_FILE_URL_TEMPLATE.format(access_key=access_key)
 
         self._load_data()
 
@@ -76,8 +77,7 @@ class Udger(object):
         return context
 
     def _check_cache(self):
-        cache_file = self._cache_file_name
-        if not os.path.exists(cache_file):
+        if not os.path.exists(self._cache_file_name):
             return False
 
         return True
@@ -100,11 +100,10 @@ class Udger(object):
         Fetch useragent parsing data from https://udger.com/ and update local cache
         """
         try:
-            cache_file = open(self._cache_file_name, 'wb')
             ini_file = self._fetch_url(self._ini_url)
             ini_data = self._ini_data_loader.parse_ini_file(ini_file)
-        except:
-            raise UdgerException("Failed to download cache data")
+        except (socket.timeout, socket.error, socket.gaierror, URLError), e:
+            raise UdgerException("Failed to download the cache data: %r" % e)
 
         self.matcher = UdgerMatcher(ini_data)
 
@@ -112,7 +111,8 @@ class Udger(object):
             'data': ini_data,
             'timestamp': time.time(),
         }
-        pickle.dump(cache_data, cache_file)
+        cache_file = open(self._cache_file_name, 'wb')
+        pickle.dump(cache_data, cache_file, -1)
 
         return True
 
