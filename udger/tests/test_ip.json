@@ -1,0 +1,322 @@
+[
+   {
+      "ret" : {
+         "ip_classification_code" : "crawler",
+         "datacenter_homepage" : "https://www.choopa.com/",
+         "crawler_respect_robotstxt" : "no",
+         "crawler_family_vendor_code" : "pingometer_llc",
+         "crawler_category" : "Site monitor",
+         "crawler_ver_major" : "",
+         "ip_country" : "Netherlands",
+         "crawler_ver" : "",
+         "crawler_name" : "PINGOMETER",
+         "ip_city" : "Amsterdam",
+         "datacenter_name_code" : "choopa",
+         "crawler_family_info_url" : "https://udger.com/resources/ua-list/bot-detail?bot=PINGOMETER#id20112",
+         "ip_country_code" : "NL",
+         "ip_ver" : "4",
+         "ip_classification" : "Crawler",
+         "crawler_family_code" : "pingometer",
+         "crawler_family_icon" : "bot_pingometer.png",
+         "crawler_family_homepage" : "",
+         "crawler_family_vendor_homepage" : "http://pingometer.com/",
+         "datacenter_name" : "Choopa, LLC.",
+         "ip" : "108.61.199.93",
+         "crawler_family" : "PINGOMETER",
+         "ip_hostname" : "108.61.199.93.vultr.com",
+         "crawler_category_code" : "site_monitor",
+         "crawler_family_vendor" : "Pingometer, LLC"
+      },
+      "test" : {
+         "teststring" : "108.61.199.93"
+      }
+   },
+   {
+      "test" : {
+         "teststring" : "2001:41d0:8:d950:0:0:0:1"
+      },
+      "ret" : {
+         "ip_classification_code" : "cgi_proxy",
+         "datacenter_homepage" : "",
+         "crawler_respect_robotstxt" : "",
+         "crawler_category" : "",
+         "crawler_family_vendor_code" : "",
+         "ip_country" : "France",
+         "crawler_ver_major" : "",
+         "crawler_ver" : "",
+         "crawler_name" : "",
+         "ip_city" : "Cachan",
+         "datacenter_name_code" : "",
+         "crawler_family_info_url" : "",
+         "ip_country_code" : "FR",
+         "ip_ver" : "6",
+         "ip_classification" : "Cgi proxy",
+         "crawler_family_code" : "",
+         "crawler_family_icon" : "",
+         "crawler_family_vendor_homepage" : "",
+         "crawler_family_homepage" : "",
+         "datacenter_name" : "",
+         "ip" : "2001:41d0:8:d950:0:0:0:1",
+         "crawler_family" : "",
+         "crawler_category_code" : "",
+         "crawler_family_vendor" : "",
+         "ip_hostname" : ""
+      }
+   },
+   {
+      "test" : {
+         "teststring" : "2001:41d0:8:d950::1"
+      },
+      "ret" : {
+         "datacenter_homepage" : "",
+         "ip_classification_code" : "cgi_proxy",
+         "crawler_respect_robotstxt" : "",
+         "crawler_category" : "",
+         "crawler_family_vendor_code" : "",
+         "ip_country" : "France",
+         "crawler_ver_major" : "",
+         "crawler_name" : "",
+         "crawler_ver" : "",
+         "ip_city" : "Cachan",
+         "datacenter_name_code" : "",
+         "crawler_family_homepage" : "",
+         "crawler_family_vendor_homepage" : "",
+         "crawler_family_icon" : "",
+         "ip_ver" : "6",
+         "ip_classification" : "Cgi proxy",
+         "crawler_family_code" : "",
+         "ip_country_code" : "FR",
+         "crawler_family_info_url" : "",
+         "crawler_family" : "",
+         "ip" : "2001:41d0:8:d950::1",
+         "datacenter_name" : "",
+         "crawler_category_code" : "",
+         "ip_hostname" : "",
+         "crawler_family_vendor" : ""
+      }
+   },
+   {
+      "ret" : {
+         "crawler_family_info_url" : "https://udger.com/resources/ua-list/bot-detail?bot=Googlebot#id31",
+         "ip_country_code" : "US",
+         "ip_classification" : "Crawler",
+         "crawler_family_code" : "googlebot",
+         "ip_ver" : "4",
+         "crawler_family_icon" : "bot_googlebot.png",
+         "crawler_family_homepage" : "http://www.google.com/bot.html",
+         "crawler_family_vendor_homepage" : "https://www.google.com/about/company/",
+         "ip_city" : "Mountain View",
+         "datacenter_name_code" : "googgle_sites",
+         "crawler_category_code" : "search_engine_bot",
+         "ip_hostname" : "crawl-66-249-64-73.googlebot.com",
+         "crawler_family_vendor" : "Google Inc.",
+         "datacenter_name" : "Google sites",
+         "ip" : "66.249.64.73",
+         "crawler_family" : "Googlebot",
+         "crawler_respect_robotstxt" : "yes",
+         "ip_classification_code" : "crawler",
+         "datacenter_homepage" : "http://sites.google.com/",
+         "crawler_ver" : "2.1",
+         "crawler_name" : "Googlebot/2.1",
+         "crawler_category" : "Search engine bot",
+         "crawler_family_vendor_code" : "google_inc",
+         "ip_country" : "United States",
+         "crawler_ver_major" : "2"
+      },
+      "test" : {
+         "teststring" : "66.249.64.73"
+      }
+   },
+   {
+      "test" : {
+         "teststring" : "90.177.52.111"
+      },
+      "ret" : {
+         "datacenter_name" : "",
+         "crawler_family" : "",
+         "ip" : "90.177.52.111",
+         "crawler_category_code" : "",
+         "ip_hostname" : "",
+         "crawler_family_vendor" : "",
+         "ip_city" : "",
+         "datacenter_name_code" : "",
+         "ip_classification" : "Unrecognized",
+         "ip_ver" : "4",
+         "crawler_family_code" : "",
+         "ip_country_code" : "",
+         "crawler_family_info_url" : "",
+         "crawler_family_homepage" : "",
+         "crawler_family_vendor_homepage" : "",
+         "crawler_family_icon" : "",
+         "crawler_category" : "",
+         "crawler_family_vendor_code" : "",
+         "ip_country" : "",
+         "crawler_ver_major" : "",
+         "crawler_name" : "",
+         "crawler_ver" : "",
+         "ip_classification_code" : "unrecognized",
+         "datacenter_homepage" : "",
+         "crawler_respect_robotstxt" : ""
+      }
+   },
+   {
+      "test" : {
+         "teststring" : "90.a.111"
+      },
+      "ret" : {
+         "datacenter_name_code" : "",
+         "ip_city" : "",
+         "crawler_family_homepage" : "",
+         "crawler_family_vendor_homepage" : "",
+         "crawler_family_icon" : "",
+         "ip_classification" : "",
+         "crawler_family_code" : "",
+         "ip_ver" : "",
+         "crawler_family_info_url" : "",
+         "ip_country_code" : "",
+         "crawler_family" : "",
+         "ip" : "90.a.111",
+         "datacenter_name" : "",
+         "crawler_family_vendor" : "",
+         "crawler_category_code" : "",
+         "ip_hostname" : "",
+         "datacenter_homepage" : "",
+         "ip_classification_code" : "",
+         "crawler_respect_robotstxt" : "",
+         "crawler_category" : "",
+         "crawler_family_vendor_code" : "",
+         "crawler_ver_major" : "",
+         "ip_country" : "",
+         "crawler_name" : "",
+         "crawler_ver" : ""
+      }
+   },
+   {
+      "ret" : {
+         "crawler_respect_robotstxt" : "",
+         "ip_classification_code" : "vpn_service",
+         "datacenter_homepage" : "",
+         "crawler_name" : "",
+         "crawler_ver" : "",
+         "crawler_category" : "",
+         "crawler_family_vendor_code" : "",
+         "crawler_ver_major" : "",
+         "ip_country" : "Vietnam",
+         "ip_classification" : "Anonymizing VPN service",
+         "crawler_family_code" : "",
+         "ip_ver" : "4",
+         "ip_country_code" : "VN",
+         "crawler_family_info_url" : "",
+         "crawler_family_homepage" : "",
+         "crawler_family_vendor_homepage" : "",
+         "crawler_family_icon" : "",
+         "ip_city" : "Hanoi",
+         "datacenter_name_code" : "",
+         "crawler_category_code" : "",
+         "crawler_family_vendor" : "",
+         "ip_hostname" : "static.vdc.vn",
+         "datacenter_name" : "",
+         "crawler_family" : "",
+         "ip" : "113.160.161.109"
+      },
+      "test" : {
+         "teststring" : "113.160.161.109"
+      }
+   },
+   {
+      "ret" : {
+         "crawler_family_vendor_code" : "",
+         "crawler_category" : "",
+         "ip_country" : "United States",
+         "crawler_ver_major" : "",
+         "crawler_ver" : "",
+         "crawler_name" : "",
+         "datacenter_homepage" : "http://privatesystems.net/",
+         "ip_classification_code" : "fake_crawler",
+         "crawler_respect_robotstxt" : "",
+         "ip" : "204.197.242.110",
+         "crawler_family" : "",
+         "datacenter_name" : "PrivateSystems.net",
+         "crawler_category_code" : "",
+         "ip_hostname" : "host.feedthebot.com",
+         "crawler_family_vendor" : "",
+         "datacenter_name_code" : "privatesystems-net",
+         "ip_city" : "Dallas",
+         "crawler_family_icon" : "",
+         "crawler_family_vendor_homepage" : "",
+         "crawler_family_homepage" : "",
+         "crawler_family_info_url" : "",
+         "ip_country_code" : "US",
+         "ip_ver" : "4",
+         "ip_classification" : "Fake crawler",
+         "crawler_family_code" : ""
+      },
+      "test" : {
+         "teststring" : "204.197.242.110"
+      }
+   },
+   {
+      "test" : {
+         "teststring" : "69.89.31.120"
+      },
+      "ret" : {
+         "crawler_category" : "",
+         "crawler_family_vendor_code" : "",
+         "ip_country" : "United States",
+         "crawler_ver_major" : "",
+         "crawler_ver" : "",
+         "crawler_name" : "",
+         "ip_classification_code" : "web_scraper",
+         "datacenter_homepage" : "https://www.bluehost.com/",
+         "crawler_respect_robotstxt" : "",
+         "datacenter_name" : "Bluehost Inc.",
+         "ip" : "69.89.31.120",
+         "crawler_family" : "",
+         "crawler_category_code" : "",
+         "ip_hostname" : "box320.bluehost.com",
+         "crawler_family_vendor" : "",
+         "datacenter_name_code" : "bluehost",
+         "ip_city" : "Provo",
+         "crawler_family_info_url" : "",
+         "ip_country_code" : "US",
+         "ip_ver" : "4",
+         "ip_classification" : "Web scraper",
+         "crawler_family_code" : "",
+         "crawler_family_icon" : "",
+         "crawler_family_homepage" : "",
+         "crawler_family_vendor_homepage" : ""
+      }
+   },
+   {
+      "ret" : {
+         "ip_hostname" : "",
+         "crawler_category_code" : "",
+         "crawler_family_vendor" : "",
+         "datacenter_name" : "Iperweb Ltd.",
+         "crawler_family" : "",
+         "ip" : "194.71.225.125",
+         "ip_ver" : "4",
+         "ip_classification" : "Known attack source",
+         "crawler_family_code" : "",
+         "ip_country_code" : "NL",
+         "crawler_family_info_url" : "",
+         "crawler_family_vendor_homepage" : "",
+         "crawler_family_homepage" : "",
+         "crawler_family_icon" : "",
+         "datacenter_name_code" : "iperweb_ltd",
+         "ip_city" : "Amsterdam",
+         "crawler_name" : "",
+         "crawler_ver" : "",
+         "crawler_category" : "",
+         "crawler_family_vendor_code" : "",
+         "crawler_ver_major" : "",
+         "ip_country" : "Netherlands",
+         "crawler_respect_robotstxt" : "",
+         "ip_classification_code" : "known_attack_source",
+         "datacenter_homepage" : "http://iperweb.com/"
+      },
+      "test" : {
+         "teststring" : "194.71.225.125"
+      }
+   }
+]
