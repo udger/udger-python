@@ -19,6 +19,8 @@ It also provides information about IP addresses (Public proxies, VPN services, T
 	$ cd udger-python/
 	# python setup.py install
 
+### Automatic updates download
+- for autoupdate data use Udger data updater (https://udger.com/support/documentation/?doc=62)
 
 ### Usage
 
