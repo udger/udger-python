@@ -268,11 +268,12 @@ class UdgerBase(object):
 
         if expr_re is None:
             m = unperlize_re.match(expr)
+            old_expr = expr
             if m:
                 expr = m.group(1)  # strip / from the beginning and /si from the end
 
             expr_re = re.compile(expr, re.I | re.S)
-            self.regexp_cache[expr] = expr_re
+            self.regexp_cache[old_expr] = expr_re
 
         self.last_regexp_match = expr_re.search(item)
 
