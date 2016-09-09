@@ -20,7 +20,13 @@ It also provides information about IP addresses (Public proxies, VPN services, T
 	# python setup.py install
 
 ### Automatic updates download
+
 - for autoupdate data use Udger data updater (https://udger.com/support/documentation/?doc=62)
+
+### Help us
+
+Feel free to send us a Pull Request on GitHub to help us make Udger for Python better.
+Thank you!
 
 ### Usage
 
@@ -173,7 +179,16 @@ It also provides information about IP addresses (Public proxies, VPN services, T
 	 'ip_last_seen': '2016-04-08 09:00:40',
 	 'ip_ver': 4}
    
-   
+### Data directory
+
+Udger() parser expects the data file to be placed in the system temporary
+directory as returned by the tempfile.gettempdir().
+
+You may override the path using the argument like this:
+
+	udger = Udger('/var/cache/udger/')
+
+
 ### Forked from
 
 Based on the code by Jure Ham (jure.ham@zemanta.com),
