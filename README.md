@@ -198,6 +198,9 @@ Previously, a python version of https://github.com/kaittodesk/uasparser2
 by Hicro Kee (http://hicrokee.com) email: hicrokee AT gmail DOT com
 and modified by Michal Molhanec http://molhanec.net
 
+### Documentation for programmers
+- https://udger.com/pub/documentation/parser/Python/html/
+
    
 ### Author
 The Udger.com Team (info@udger.com)
