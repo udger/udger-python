@@ -5,7 +5,7 @@ import socket
 import struct
 import tempfile
 
-unperlize_re = re.compile('^/?(.*)/si$')
+unperlize_re = re.compile('^/?(.*)/([si]*)$')
 
 
 def join_sql_columns(columns_dict, set_index=None):
@@ -184,6 +184,44 @@ class UdgerBase(object):
             udger_client_class.id = ?
     """ % join_sql_columns(_device_columns)
 
+    devicename_sql = """
+        SELECT
+            id AS regex_id,
+            regstring
+        FROM
+            udger_devicename_regex
+        WHERE
+            os_family_code = ? AND
+            os_code IN ('-all-', ?)
+        ORDER BY
+            sequence
+    """
+
+    _marketname_columns = {
+        'device_marketname':       'marketname',
+        'device_brand':            'brand',
+        'device_brand_code':       'brand_code',
+        'device_brand_homepage':   'brand_url',
+        'device_brand_icon':       'icon',
+        'device_brand_icon_big':   'icon_big',
+        'device_brand_info_url':   '"https://udger.com/resources/ua-list/devices-brand-detail?brand=" || '
+                                   'REPLACE(brand_code, " ", "%20")',
+    }
+
+    marketname_emptyrow = make_empty_row(_marketname_columns)
+
+    marketname_sql = """
+        SELECT
+            %s
+        FROM
+            udger_devicename_list
+        JOIN
+            udger_devicename_brand ON udger_devicename_brand.id = udger_devicename_list.brand_id
+        WHERE
+            regex_id = ? AND code = ?
+        LIMIT 1
+    """ % join_sql_columns(_marketname_columns)
+
     _ip_columns = {
         'ip_classification':              'ip_classification',
         'ip_classification_code':         'ip_classification_code',
@@ -250,6 +288,20 @@ class UdgerBase(object):
             iplong_from <= ? AND iplong_to >= ?
     """ % join_sql_columns(_datacenter_columns)
 
+    datacenter6_sql = """
+        SELECT
+            %s
+        FROM
+            udger_datacenter_range6
+        JOIN
+            udger_datacenter_list ON udger_datacenter_range6.datacenter_id = udger_datacenter_list.id
+        WHERE
+            iplong_from0 <= ? AND iplong_from1 <= ? AND iplong_from2 <= ? AND iplong_from3 <= ? AND
+            iplong_from4 <= ? AND iplong_from5 <= ? AND iplong_from6 <= ? AND iplong_from7 <= ? AND
+            iplong_to0 >= ? AND iplong_to1 >= ? AND iplong_to2 >= ? AND iplong_to3 >= ? AND
+            iplong_to4 >= ? AND iplong_to5 >= ? AND iplong_to6 >= ? AND iplong_to7 >= ?
+    """ % join_sql_columns(_datacenter_columns)
+
     def __init__(self, data_dir=None):
         self.data_dir = data_dir or tempfile.gettempdir()
         self.regexp_cache = {}
@@ -261,21 +313,31 @@ class UdgerBase(object):
             for idx, col in enumerate(cursor.description)
         )
 
+    perl_flags = {
+        's': re.DOTALL,
+        'i': re.IGNORECASE,
+        'm': re.MULTILINE,
+        'x': re.VERBOSE,
+    }
+
     def regexp_func(self, expr, item):
         global unperlize_re
 
         expr_re = self.regexp_cache.get(expr)
-
         if expr_re is None:
             m = unperlize_re.match(expr)
             old_expr = expr
+            flags = 0
             if m:
-                expr = m.group(1)  # strip / from the beginning and /si from the end
+                # strip / from the beginning and /(si...) from the end
+                expr, opts = m.groups()
+                # this fails for unsupported Perl flag
+                flags = sum(map(self.perl_flags.get, opts))
 
-            expr_re = re.compile(expr, re.I | re.S)
+            expr_re = re.compile(expr, flags)
             self.regexp_cache[old_expr] = expr_re
 
-        self.last_regexp_match = expr_re.search(item)
+        self.last_regexp_match = expr_re.search(item)  # this does not take flags!
 
         return bool(self.last_regexp_match)
 
@@ -298,13 +360,29 @@ class UdgerBase(object):
         for row in self.db_cursor:
             return row
 
+    def db_iter_rows(self, sql, *params):
+        self.last_regexp_match = None
+
+        self.db_cursor.execute(sql, params)
+
+        for row in self.db_cursor:
+            yield row
+
+            self.last_regexp_match = None
+
     @staticmethod
     def normalize_ipaddress(ip_string):
         try:
-            ip_string = socket.inet_ntop(socket.AF_INET, socket.inet_pton(socket.AF_INET, ip_string))
-            ipv4_int = struct.unpack("!L", socket.inet_aton(ip_string))[0]
+            packed = socket.inet_pton(socket.AF_INET, ip_string)
+            ip_string = socket.inet_ntop(socket.AF_INET, packed)
+
+            ipv6_words = None
+            ipv4_int = struct.unpack("!L", packed)[0]
         except socket.error:
-            ip_string = socket.inet_ntop(socket.AF_INET6, socket.inet_pton(socket.AF_INET6, ip_string))
+            packed = socket.inet_pton(socket.AF_INET6, ip_string)
+            ip_string = socket.inet_ntop(socket.AF_INET6, packed)
+
+            ipv6_words = struct.unpack("!8H", packed)
             ipv4_int = None
 
-        return ip_string, ipv4_int
+        return ip_string, ipv4_int, ipv6_words

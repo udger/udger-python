@@ -13,8 +13,12 @@ except NameError:
 """
 Running in both Python 2 and Python 3 like this:
 
-PYTHONPATH=../.. python2 runtests.py
-PYTHONPATH=../.. python3 runtests.py
+$ PYTHONPATH=../.. python2 runtests.py
+$ PYTHONPATH=../.. python3 runtests.py
+
+Compare Python 2 to Python 3:
+$ diff <(PYTHONPATH=../.. python3 runtests.py | sort) <(PYTHONPATH=../.. python2 runtests.py | sort)
+
 """
 
 

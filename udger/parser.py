@@ -33,6 +33,29 @@ class Udger(UdgerBase):
 
         ua.update(dev or self.device_emptyrow)
 
+        marketname = None
+        if ua['os_family_code']:
+            # must complete first so cursors don't collide
+            rows = tuple(self.db_iter_rows(
+                self.devicename_sql,
+                ua['os_family_code'],
+                ua['os_code'],
+            ))
+
+            for dn_row in rows:
+                if self.regexp_func(dn_row['regstring'], ua_string):
+                    match = self.last_regexp_match.group(1)
+
+                    marketname = self.db_get_first_row(
+                        self.marketname_sql,
+                        dn_row['regex_id'],
+                        match.strip(),
+                    )
+                    if marketname:
+                        break
+
+        ua.update(marketname or self.marketname_emptyrow)
+
         ua['ua_string'] = ua_string
 
         return ua
@@ -55,7 +78,7 @@ class Udger(UdgerBase):
         ip['ip'] = ip_string
 
         try:
-            ip_string, ipv4_int = self.normalize_ipaddress(ip_string)
+            ip_string, ipv4_int, ipv6_words = self.normalize_ipaddress(ip_string)
         except:
             pass
         else:
@@ -74,10 +97,13 @@ class Udger(UdgerBase):
             if ipv4_int is not None:
                 ip['ip_ver'] = 4
                 dc = self.db_get_first_row(self.datacenter_sql, ipv4_int, ipv4_int)
-                if dc:
-                    ip.update(dc)
 
             else:
                 ip['ip_ver'] = 6
+                ipv6_words *= 2
+                dc = self.db_get_first_row(self.datacenter6_sql, *ipv6_words)
+
+            if dc:
+                ip.update(dc)
 
         return ip
