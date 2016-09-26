@@ -180,7 +180,7 @@ Usage
 	 'crawler_family_code': 'pingometer',
 	 'crawler_family_homepage': '',
 	 'crawler_family_icon': 'bot_pingometer.png',
-	 'crawler_family_info_url': 'https://udger.com/resources/ua-list/bot-detail?bot=PINGOMETER#id20112',
+	 'crawler_family_info_url': 'https://udger.com/resources/ua-list/bot-detail?bot=PINGOMETER',
 	 'crawler_family_vendor': 'Pingometer, LLC',
 	 'crawler_family_vendor_code': 'pingometer_llc',
 	 'crawler_family_vendor_homepage': 'http://pingometer.com/',

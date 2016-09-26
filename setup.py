@@ -11,10 +11,10 @@ with open(join(dirname(__file__), 'README.rst')) as readme_file:
 setup(
     name='udger',
     version=__version__,
-    author='The Udger Team',
     license='BSD',
+    author='The Udger Team',
     author_email='info@udger.com',
-    description="Fast and reliable User Agent parser for Python",
+    description="Fast and reliable User Agent parser and IP classifier for Python",
     long_description=long_description,
     url='https://github.com/udger/udger-python',
     packages=find_packages(
