@@ -1,34 +1,43 @@
-# Udger client for Python (data ver. 3)
+Udger client for Python (data ver. 3)
+=====================================
+
 Local parser is very fast and accurate useragent string detection solution. Enables developers to locally install and integrate a highly-scalable product.
 We provide the detection of the devices (personal computer, tablet, Smart TV, Game console etc.), operating system and client SW type (browser, e-mail client etc.).
 It also provides information about IP addresses (Public proxies, VPN services, Tor exit nodes, Fake crawlers, Web scrapers .. etc.)
 
-
 - Tested with more the 50.000 unique user agents.
 - Up to date data provided by https://udger.com/
 - Support for Python 3
-  
-### Install using pip
+
+Enjoy!
+
+Install using pip
+-----------------
 
 	$ pip install udger
 
-
-### Install from git repo
+Install from git repo
+---------------------
 
 	$ git clone https://github.com/udger/udger-python
 	$ cd udger-python/
 	# python setup.py install
 
-### Automatic updates download
+Automatic updates download
+--------------------------
 
-- for autoupdate data use Udger data updater (https://udger.com/support/documentation/?doc=62)
+For data auto update, please use Udger data updater (https://udger.com/support/documentation/?doc=62)
 
-### Help us
+Help us
+-------
 
 Feel free to send us a Pull Request on GitHub to help us make Udger for Python better.
+Or just let us know of any issues you encounter.
+
 Thank you!
 
-### Usage
+Usage
+-----
 
 	$ python
 	>>> from pprint import pprint
@@ -36,48 +45,55 @@ Thank you!
 	>>> udger = Udger()
 	>>>
 	>>> result = udger.parse_ua(
-	...     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'
+	...     'Mozilla/5.0 (iPad; CPU OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53'
 	... )
 	>>> pprint(result)
 	{'crawler_category': None,
 	 'crawler_category_code': None,
 	 'crawler_last_seen': None,
 	 'crawler_respect_robotstxt': None,
-	 'device_class': 'Desktop',
-	 'device_class_code': 'desktop',
-	 'device_class_icon': 'desktop.png',
-	 'device_class_icon_big': 'desktop_big.png',
-	 'device_class_info_url': 'https://udger.com/resources/ua-list/device-detail?device=Desktop',
-	 'os': 'OS X 10.11 El Capitan',
-	 'os_code': 'osx_10_11',
-	 'os_family': 'OS X',
-	 'os_family_code': 'osx',
-	 'os_family_vendor': 'Apple Computer, Inc.',
+	 'device_brand': 'Apple',
+	 'device_brand_code': 'apple',
+	 'device_brand_homepage': 'http://www.apple.com/',
+	 'device_brand_icon': 'apple.png',
+	 'device_brand_icon_big': 'apple_big.png',
+	 'device_brand_info_url': 'https://udger.com/resources/ua-list/devices-brand-detail?brand=apple',
+	 'device_class': 'Tablet',
+	 'device_class_code': 'tablet',
+	 'device_class_icon': 'tablet.png',
+	 'device_class_icon_big': 'tablet_big.png',
+	 'device_class_info_url': 'https://udger.com/resources/ua-list/device-detail?device=Tablet',
+	 'device_marketname': 'iPad',
+	 'os': 'iOS 7',
+	 'os_code': 'ios_7',
+	 'os_family': 'iOS',
+	 'os_family_code': 'ios',
+	 'os_family_vendor': 'Apple Inc.',
 	 'os_family_vendor_code': 'apple_inc',
 	 'os_family_vendor_homepage': 'http://www.apple.com/',
-	 'os_homepage': 'https://en.wikipedia.org/wiki/OS_X_El_Capitan',
-	 'os_icon': 'macosx.png',
-	 'os_icon_big': 'macosx_big.png',
-	 'os_info_url': 'https://udger.com/resources/ua-list/os-detail?os=OS%20X%2010.11%20El%20Capitan',
-	 'ua': 'Safari 9.0.2',
-	 'ua_class': 'Browser',
-	 'ua_class_code': 'browser',
+	 'os_homepage': 'https://en.wikipedia.org/wiki/IOS_7',
+	 'os_icon': 'iphone.png',
+	 'os_icon_big': 'iphone_big.png',
+	 'os_info_url': 'https://udger.com/resources/ua-list/os-detail?os=iOS%207',
+	 'ua': 'Safari mobile 7.0',
+	 'ua_class': 'Mobile browser',
+	 'ua_class_code': 'mobile_browser',
 	 'ua_engine': 'WebKit',
-	 'ua_family': 'Safari',
-	 'ua_family_code': 'safari',
+	 'ua_family': 'Safari mobile',
+	 'ua_family_code': 'safari_mobile',
 	 'ua_family_homepage': 'https://en.wikipedia.org/wiki/Safari_%28web_browser%29',
 	 'ua_family_icon': 'safari.png',
 	 'ua_family_icon_big': 'safari_big.png',
-	 'ua_family_info_url': 'https://udger.com/resources/ua-list/browser-detail?browser=Safari',
+	 'ua_family_info_url': 'https://udger.com/resources/ua-list/browser-detail?browser=Safari%20mobile',
 	 'ua_family_vendor': 'Apple Inc.',
 	 'ua_family_vendor_code': 'apple_inc',
 	 'ua_family_vendor_homepage': 'http://www.apple.com/',
-	 'ua_string': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) '
-		      'AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 '
-		      'Safari/601.3.9',
-	 'ua_uptodate_current_version': '9',
-	 'ua_version': '9.0.2',
-	 'ua_version_major': '9'}
+	 'ua_string': 'Mozilla/5.0 (iPad; CPU OS 7_0 like Mac OS X) '
+	              'AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 '
+	              'Mobile/11A465 Safari/9537.53',
+	 'ua_uptodate_current_version': '',
+	 'ua_version': '7.0',
+	 'ua_version_major': '7'}
 	>>>
 	>>> result = udger.parse_ua('Some thing')
 	>>> pprint(result)
@@ -85,11 +101,18 @@ Thank you!
 	 'crawler_category_code': None,
 	 'crawler_last_seen': None,
 	 'crawler_respect_robotstxt': None,
+	 'device_brand': None,
+	 'device_brand_code': None,
+	 'device_brand_homepage': None,
+	 'device_brand_icon': None,
+	 'device_brand_icon_big': None,
+	 'device_brand_info_url': None,
 	 'device_class': None,
 	 'device_class_code': None,
 	 'device_class_icon': None,
 	 'device_class_icon_big': None,
 	 'device_class_info_url': None,
+	 'device_marketname': None,
 	 'os': None,
 	 'os_code': None,
 	 'os_family': None,
@@ -146,7 +169,7 @@ Thank you!
 	 'ip_country': 'United States',
 	 'ip_country_code': 'US',
 	 'ip_hostname': 'box320.bluehost.com',
-	 'ip_last_seen': '2016-04-08 09:25:51',
+	 'ip_last_seen': '2016-09-17 12:13:25',
 	 'ip_ver': 4}
 	>>>
 	>>> result = udger.parse_ip('108.61.199.93')
@@ -161,7 +184,7 @@ Thank you!
 	 'crawler_family_vendor': 'Pingometer, LLC',
 	 'crawler_family_vendor_code': 'pingometer_llc',
 	 'crawler_family_vendor_homepage': 'http://pingometer.com/',
-	 'crawler_last_seen': '2016-04-08 09:15:47',
+	 'crawler_last_seen': '2016-09-17 12:15:38',
 	 'crawler_name': 'PINGOMETER',
 	 'crawler_respect_robotstxt': 'no',
 	 'crawler_ver': '',
@@ -176,20 +199,22 @@ Thank you!
 	 'ip_country': 'Netherlands',
 	 'ip_country_code': 'NL',
 	 'ip_hostname': '108.61.199.93.vultr.com',
-	 'ip_last_seen': '2016-04-08 09:00:40',
+	 'ip_last_seen': '2016-09-17 12:00:31',
 	 'ip_ver': 4}
    
-### Data directory
+Data directory
+--------------
 
-Udger() parser expects the data file to be placed in the system temporary
-directory as returned by the tempfile.gettempdir().
+``Udger()`` parser expects the data file to be placed in the system temporary
+directory as returned by the ``tempfile.gettempdir()``.
 
 You may override the path using the argument like this:
 
 	udger = Udger('/var/cache/udger/')
 
 
-### Forked from
+Forked from
+-----------
 
 Based on the code by Jure Ham (jure.ham@zemanta.com),
 https://github.com/hamaxx/uasparser2
@@ -198,12 +223,17 @@ Previously, a python version of https://github.com/kaittodesk/uasparser2
 by Hicro Kee (http://hicrokee.com) email: hicrokee AT gmail DOT com
 and modified by Michal Molhanec http://molhanec.net
 
-### Documentation for programmers
-- https://udger.com/pub/documentation/parser/Python/html/
+Documentation for developers
+----------------------------
 
-   
-### Author
+https://udger.com/pub/documentation/parser/Python/html/
+
+Author
+------
+
 The Udger.com Team (info@udger.com)
 
-### old v1 format
-If you still use the previous format of the db (v1), please see the branch old_format_v1   
+Old v1 format
+-------------
+
+If you still use the previous format of the db (v1), please see the branch ``old_format_v1``
