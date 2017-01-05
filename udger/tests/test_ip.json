@@ -33,10 +33,42 @@
     },
     {
         "test": {
-            "teststring": "2001:41d0:8:d950:0:0:0:1"
+            "teststring": "2a02:598:111::9"
         },
         "ret": {
-            "ip": "2001:41d0:8:d950:0:0:0:1",
+            "ip": "2a02:598:111::9",
+            "ip_ver": "6",
+            "ip_classification": "Crawler",
+            "ip_classification_code": "crawler",
+            "ip_hostname": "fulltextrobot-dev-2a02-598-111--9.seznam.cz",
+            "ip_country": "Czech Republic",
+            "ip_country_code": "CZ",
+            "ip_city": "Prague",
+            "crawler_name": "SeznamBot\/3.2-test1",
+            "crawler_ver": "3.2-test1",
+            "crawler_ver_major": "3",
+            "crawler_family": "SeznamBot",
+            "crawler_family_code": "seznambot",
+            "crawler_family_homepage": "http:\/\/napoveda.seznam.cz\/en\/seznambot-intro\/",
+            "crawler_family_vendor": "Seznam.cz, a.s.",
+            "crawler_family_vendor_code": "seznam-cz_as",
+            "crawler_family_vendor_homepage": "http:\/\/onas.seznam.cz\/",
+            "crawler_family_icon": "seznam.png",
+            "crawler_family_info_url": "https:\/\/udger.com\/resources\/ua-list\/bot-detail?bot=SeznamBot#id28914",
+            "crawler_category": "Search engine bot",
+            "crawler_category_code": "search_engine_bot",
+            "crawler_respect_robotstxt": "unknown",
+            "datacenter_name": "Seznam.cz",
+            "datacenter_name_code": "seznam_cz",
+            "datacenter_homepage": "http:\/\/onas.seznam.cz\/"
+        }
+    },
+    {
+        "test": {
+            "teststring": "2001:41d0:8:d54c::1"
+        },
+        "ret": {
+            "ip": "2001:41d0:8:d54c::1",
             "ip_ver": "6",
             "ip_classification": "Cgi proxy",
             "ip_classification_code": "cgi_proxy",
@@ -65,66 +97,34 @@
     },
     {
         "test": {
-            "teststring": "2a02:598:a::78:161"
+            "teststring": "66.249.64.73"
         },
         "ret": {
-            "ip": "2a02:598:a::78:161",
-            "ip_ver": "6",
-            "ip_classification": "Crawler",
-            "ip_classification_code": "crawler",
-            "ip_hostname": "fulltextrobot-2a02-598-a--78-161.seznam.cz",
-            "ip_country": "Czech Republic",
-            "ip_country_code": "CZ",
-            "ip_city": "Prague (Praha 5)",
-            "crawler_name": "SeznamBot\/3.2",
-            "crawler_ver": "3.2",
-            "crawler_ver_major": "3",
-            "crawler_family": "SeznamBot",
-            "crawler_family_code": "seznambot",
-            "crawler_family_homepage": "http:\/\/napoveda.seznam.cz\/en\/seznambot-intro\/",
-            "crawler_family_vendor": "Seznam.cz, a.s.",
-            "crawler_family_vendor_code": "seznam-cz_as",
-            "crawler_family_vendor_homepage": "http:\/\/onas.seznam.cz\/",
-            "crawler_family_icon": "seznam.png",
-            "crawler_family_info_url": "https:\/\/udger.com\/resources\/ua-list\/bot-detail?bot=SeznamBot#id25683",
-            "crawler_category": "Search engine bot",
-            "crawler_category_code": "search_engine_bot",
-            "crawler_respect_robotstxt": "yes",
-            "datacenter_name": "Seznam.cz",
-            "datacenter_name_code": "seznam_cz",
-            "datacenter_homepage": "http:\/\/onas.seznam.cz\/"
-        }
-    },
-    {
-        "test": {
-            "teststring": "69.30.234.2"
-        },
-        "ret": {
-            "ip": "69.30.234.2",
+            "ip": "66.249.64.73",
             "ip_ver": "4",
             "ip_classification": "Crawler",
             "ip_classification_code": "crawler",
-            "ip_hostname": "",
+            "ip_hostname": "crawl-66-249-64-73.googlebot.com",
             "ip_country": "United States",
             "ip_country_code": "US",
-            "ip_city": "Kansas City",
-            "crawler_name": "MJ12bot\/v1.4.5",
-            "crawler_ver": "1.4.5",
-            "crawler_ver_major": "1",
-            "crawler_family": "MJ12bot",
-            "crawler_family_code": "mj12bot",
-            "crawler_family_homepage": "http:\/\/majestic12.co.uk\/bot.php",
-            "crawler_family_vendor": "Majestic-12 Ltd",
-            "crawler_family_vendor_code": "majestic-12_ltd",
-            "crawler_family_vendor_homepage": "http:\/\/www.majestic12.co.uk\/",
-            "crawler_family_icon": "bot_mj12bot.png",
-            "crawler_family_info_url": "https:\/\/udger.com\/resources\/ua-list\/bot-detail?bot=MJ12bot#id13316",
-            "crawler_category": "Marketing",
-            "crawler_category_code": "marketeing",
-            "crawler_respect_robotstxt": "unknown",
-            "datacenter_name": "Wholesale Internet, Inc",
-            "datacenter_name_code": "wholesale_internet_inc",
-            "datacenter_homepage": "https:\/\/www.wholesaleinternet.net\/"
+            "ip_city": "Mountain View",
+            "crawler_name": "Googlebot\/2.1",
+            "crawler_ver": "2.1",
+            "crawler_ver_major": "2",
+            "crawler_family": "Googlebot",
+            "crawler_family_code": "googlebot",
+            "crawler_family_homepage": "http:\/\/www.google.com\/bot.html",
+            "crawler_family_vendor": "Google Inc.",
+            "crawler_family_vendor_code": "google_inc",
+            "crawler_family_vendor_homepage": "https:\/\/www.google.com\/about\/company\/",
+            "crawler_family_icon": "bot_googlebot.png",
+            "crawler_family_info_url": "https:\/\/udger.com\/resources\/ua-list\/bot-detail?bot=Googlebot#id31",
+            "crawler_category": "Search engine bot",
+            "crawler_category_code": "search_engine_bot",
+            "crawler_respect_robotstxt": "yes",
+            "datacenter_name": "Google sites",
+            "datacenter_name_code": "googgle_sites",
+            "datacenter_homepage": "http:\/\/sites.google.com\/"
         }
     },
     {
