@@ -5,6 +5,12 @@ from .queries import Queries
 class Udger(UdgerBase):
 
     def parse_ua(self, ua_string):
+
+        if self.lru_cache is not None:
+            cached = self.lru_cache.get(ua_string, None)
+            if cached is not None:
+                return cached
+
         ua, class_id, client_id = self._client_detector(ua_string)
 
         opsys = self._os_detector(ua_string, client_id)
@@ -37,6 +43,8 @@ class Udger(UdgerBase):
         ua.update(marketname or self.marketname_emptyrow)
 
         ua['ua_string'] = ua_string
+
+        self.lru_cache[ua_string] = ua
 
         return ua
 

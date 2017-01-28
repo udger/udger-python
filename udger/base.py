@@ -1,12 +1,14 @@
+import collections
 import os
 import re
-import sqlite3
 import socket
+import sqlite3
 import struct
 import tempfile
 
-from .wdetector import *
 from .queries import Queries
+from .wdetector import *
+
 
 unperlize_re = re.compile('^/?(.*)/([si]*)$')
 
@@ -27,6 +29,30 @@ class cached_property(object):
         res = instance.__dict__[self.func.__name__] = self.func(instance)
         return res
 
+
+class LRUDict(collections.MutableMapping):
+    def __init__(self, maxlen, *a, **k):
+        self.maxlen = maxlen
+        self.d = dict(*a, **k)
+        while len(self) > maxlen:
+            self.popitem()
+
+    def __iter__(self):
+        return iter(self.d)
+
+    def __len__(self):
+        return len(self.d)
+
+    def __getitem__(self, k):
+        return self.d[k]
+
+    def __delitem__(self, k):
+        del self.d[k]
+
+    def __setitem__(self, k, v):
+        if k not in self and len(self) == self.maxlen:
+            self.popitem()
+        self.d[k] = v
 
 class IdRegString(object):
     def __init__(self, rowid, word_id, word2_id, pattern):
@@ -62,9 +88,11 @@ class UdgerBase(object):
         ip_ver=None,
     )
 
-    def __init__(self, data_dir=None):
+    def __init__(self, data_dir=None, lru_cache_size=10000):
         self.data_dir = data_dir or tempfile.gettempdir()
         self.regexp_cache = {}
+        if lru_cache_size > 0:
+            self.lru_cache = LRUDict(lru_cache_size)
 
     @staticmethod
     def dict_factory(cursor, row):
