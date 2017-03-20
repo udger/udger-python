@@ -1,5 +1,5 @@
 from .parser import Udger
 
-__version__ = '3.0.4'
+__version__ = '4.0.0'
 
 __all__ = ['Udger']
