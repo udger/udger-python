@@ -123,7 +123,7 @@
             "crawler_category_code": "search_engine_bot",
             "crawler_respect_robotstxt": "yes",
             "datacenter_name": "Google sites",
-            "datacenter_name_code": "googgle_sites",
+            "datacenter_name_code": "google_sites",
             "datacenter_homepage": "http:\/\/sites.google.com\/"
         }
     },
