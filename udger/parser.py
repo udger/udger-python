@@ -107,8 +107,7 @@ class Udger(UdgerBase):
         return client_id != 0 and self.db_get_first_row(Queries.client_os_sql, client_id)
 
     def _device_detector(self, ua_string, class_id):
-        # rowid = self._find_id_from_list(ua_string, self.device_word_detector.find_words(ua_string), self.device_regstring_list)
-        rowid = self._find_id_from_list_full_scan(ua_string, self.device_regstring_list)
+        rowid = self._find_id_from_list(ua_string, self.device_word_detector.find_words(ua_string), self.device_regstring_list)
         if rowid != -1:
             return self.db_get_first_row(Queries.device_sql, rowid)
         return class_id != -1 and self.db_get_first_row(Queries.client_class_sql, class_id)
@@ -121,15 +120,6 @@ class Udger(UdgerBase):
                 if not m is None:
                     self.last_regexp_match = m
                     return irs.rowid
-        return -1
-
-    def _find_id_from_list_full_scan(self, ua_string, reg_string_list):
-        self.last_regexp_match = None
-        for irs in reg_string_list:
-            m = irs.pattern.search(ua_string)
-            if not m is None:
-                self.last_regexp_match = m
-                return irs.rowid
         return -1
 
     def _patch_versions(self, ua):
