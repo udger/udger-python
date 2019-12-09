@@ -12,15 +12,16 @@ class Udger(UdgerBase):
                 return cached
 
         ua, class_id, client_id = self._client_detector(ua_string)
+        is_crawler = (ua['ua_class'] == 'Crawler')
 
-        opsys = self._os_detector(ua_string, client_id)
+        opsys = self._os_detector(ua_string, client_id) if not is_crawler else None
         ua.update(opsys or self.os_emptyrow)
 
-        dev = self._device_detector(ua_string, class_id)
+        dev = self._device_detector(ua_string, class_id) if not is_crawler else None
         ua.update(dev or self.device_emptyrow)
 
         marketname = None
-        if ua['os_family_code']:
+        if not is_crawler and ua['os_family_code']:
             # must complete first so cursors don't collide
             rows = tuple(self.db_iter_rows(
                 Queries.devicename_sql,
