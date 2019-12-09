@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 from udger import __version__
 
 
-with open(join(dirname(__file__), 'README.rst')) as readme_file:
+with open(join(dirname(__file__), 'README.md')) as readme_file:
     long_description = readme_file.read()
 
 
