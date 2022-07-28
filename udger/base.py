@@ -1,4 +1,7 @@
-import collections
+try:
+    from collections import MutableMapping
+except ImportError:
+    from collections.abc import MutableMapping
 import os
 import re
 import socket
@@ -30,7 +33,7 @@ class cached_property(object):
         return res
 
 
-class LRUDict(collections.MutableMapping):
+class LRUDict(MutableMapping):
     def __init__(self, maxlen, *a, **k):
         self.maxlen = maxlen
         self.d = dict(*a, **k)
