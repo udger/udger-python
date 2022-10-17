@@ -1,6 +1,7 @@
 import collections
 import os
 import re
+import sys
 import socket
 import sqlite3
 import struct
@@ -8,6 +9,12 @@ import tempfile
 
 from .queries import Queries
 from .wdetector import *
+
+
+if sys.version_info.major == 3 and sys.version_info.minor >= 10:
+    from collections.abc import MutableMapping
+else:
+    from collections import MutableMapping
 
 
 unperlize_re = re.compile('^/?(.*)/([si]*)$')
@@ -30,7 +37,7 @@ class cached_property(object):
         return res
 
 
-class LRUDict(collections.MutableMapping):
+class LRUDict(MutableMapping):
     def __init__(self, maxlen, *a, **k):
         self.maxlen = maxlen
         self.d = dict(*a, **k)
