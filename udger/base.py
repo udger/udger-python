@@ -1,4 +1,7 @@
-import collections
+try:
+    from collections import MutableMapping
+except ImportError:
+    from collections.abc import MutableMapping
 import os
 import re
 import sys
